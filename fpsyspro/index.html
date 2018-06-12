@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title>信用评估系统</title>
+    <link rel="icon" type="images/png" sizes="32*32" href="images/favicon-32x32.png">
+    	
+    <!----------------Global css------------------->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="vendors/revolution-slider/css/settings.css">   
+
+    <!----------------custo css----------------->
+	
+    <link rel="stylesheet" href="css/custom.css">  
+     <!--
+    <linl rel="stylesheet" href="css/customs.css">  -->
+    <!-----------------Global js----------------------->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="vendors/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+	<script src="vendors/revolution-slider/js/jquery.themepunch.tools.min.js"></script>   
+    <script src="js/echarts.min.js"></script>
+    
+    <!----------------custo js----------------->
+    <script src="js/custom.js"></script> 
+    <script src="js/test.js"></script>
+</head>
+
+<body>
+
+    <!-------------------Preloader---------------->  
+    <div class="preloader" style="position:fixed;
+        width:100%;
+        height:100%;
+        top:0;
+        left:0;
+        z-index:100000;
+        backface-visibility: hidden;
+        background: #ffffff;">
+        <div style=" width: 50px;
+        height: 50px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        background-position: center;
+        margin:-25px 0 0 -25px;">
+            <img src="images/loader.gif" alt="loading...">
+        </div>
+    </div>     
+    
+   	<!-----------------Header------------------>
+	<div class="tp-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-5 col-md-6 text-right">
+					<span id="loginSpan" class="signin" data-toggle="modal" data-target="#myModal"><span class="hidden-xs" id="loginOruser" >登录</span>
+					<i class="fa fa-sign-in visible-xs-block" aria-hidden="true"></i> </span>
+					<span id="registerSpan"class="register" data-toggle="modal" data-target="#myModal"><span class="hidden-xs" id="registerOrexit" >注册</span>
+					<i class="fa fa-user-plus visible-xs-block" aria-hidden="true"></i></span>
+				</div>
+			</div>
+		</div>
+	</div> 
+    
+	<!-------------Login And Register Modal--------->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <br>
+                <div class="bs-example bs-example-tabs">
+                    <ul id="myTab" class="nav nav-tabs ">
+                        <li id="signin_tab" class="active"><a href="#signin" data-toggle="tab">登录</a></li>
+                        <li id="reg_tab"><a href="#signup" data-toggle="tab" ></a>注册</li>
+                    </ul>
+                </div>
+                <div class="modal-body">
+                    <div id="myTabContent" class="tab-content">
+                        <div class="signin tab-pane fade active in" id="signin"><!--form-horizontal-->
+                                <fieldset>
+                                    <div class="control-group section-top-10">
+                                        <label class="control-label" for="userid">
+                                            <span class="glyphicon glyphicon-user text-primary"></span> 用户名 :
+                                        </label>
+                                        <div class="controls">
+                                            <input id="userid" name="userid" type="text" class="form-control input-medium"
+                                                   placeholder="user Id" required>
+                                        </div>
+                                    </div>
+                                    <div class="control-group section-top-10">
+                                        <label class="control-label" for="passwordinput">
+                                            <span class="glyphicon glyphicon-eye-open text-primary"></span> 密码 :
+                                        </label>
+                                        <div class="controls">
+                                            <input type="password" id="passwordinput" name="passwordinput"
+                                                   class="form-control input-medium" placeholder="Password" required>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls section-top-10"><!--onclick='login()'  onclick="serverCookie()"-->
+                                            <button id="userlogin" name="userlogin" class="btn btn-success form-control"   onclick="logininfo()">
+                                              登录
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                        </div>
+                        <div class="tab-pane fade signup" id="signup"><!--onsubmit="return"-->
+							<div id="registerUser">
+							   <fieldset>
+                                    <div class="control-group section-top-10">
+                                        <label for="user">
+                                            <span class="glyphicon glyphicon-user text-primary"></span> 姓名
+                                            :
+                                        </label>
+                                        <div class="controls">
+                                            <input id="user_name" name="userid" class="form-control input-large" type="text"
+                                                   placeholder="Name" required="">
+                                        </div>
+                                    </div>   
+                                    <div class="control-group section-top-10">
+                                        <label for="password">
+                                            <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                                            密码 :
+                                        </label>
+                                        <div class="controls">
+                                            <input id="user_pass" name="password" class="form-control input-large"
+                                                   type="password" placeholder="Password" required>
+                                        </div>
+                                    </div>
+                                    <div class="control-group section-top-10">
+                                        <label class="control-label" for="reenterpassword">
+                                            <span class="glyphicon glyphicon-repeat text-primary"></span> 重复密码 :
+                                        </label>
+                                        <div class="controls">
+                                            <input id="reenterpassword" class="form-control input-large"
+                                                   name="reenterpassword" type="password" placeholder="Re Enter Password"
+                                                   required="">
+                                        </div>
+                                    </div>
+                                    <div class="control-group section-top-10">
+                                        <label class="control-label" for="confirmsignup"></label>
+                                        <div class="controls">
+                                            <button id="confirmsignup" name="confirmsignup"
+                                                   onclick="registerUserinfo()"  class="btn btn-success form-control">
+											
+                                                <!-- onclick="registerUserinfo   style="margin:0 auto; " registerUser()"   -->
+                                                注册
+                                            </button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+							</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+   <!-------------------------slider----------------------->
+   <div class="container">
+		<div class="tp-banner-container rev_slider_wrapper fullwidthbanner-container" data-alias="news-hero72">
+		    <div class="home_slider">
+		        <ul>
+		            <li data-index="rs-10" data-transition="fade" data-slotamount="7" class="bg-light"
+		                data-easein="Power4.easeInOut" data-delay="5000" data-easeout="Power4.easeInOut" data-masterspeed="2000"
+		                data-rotate="0" data-saveperformance="off" data-title="Love it?" data-description="">
+		                <img src="images/new_slider3.jpg" alt="systemimg" data-kenburns="off" data-bgposition="center center"
+		                     data-duration="10000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120"
+		                     data-rotatestart="0" data-rotateend="0" data-offsetstart="0 -500" data-bgfit="cover"
+		                     data-offsetend="0 500" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+		            </li>
+		            <li data-transition="Curtain from Middle" data-slotamount="7" data-delay="5000" data-masterspeed="600"
+		                class="bg-light">
+		
+		                <img src="images/new_slider4.jpg" alt="girlimg" data-bgposition="right bottom"
+		                     data-duration="11000" data-ease="Linear.easeNone" data-bgfit="cover"
+		                     data-bgpositionend="left top">
+		                <div class="tp-caption grey_heavy_72 sfb tp-resizeme" data-x="center"
+		                     data-y="150" data-speed="700" data-start="700" data-easing="Power0.easeInOut"
+		                     data-splitin="lines"
+		                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
+		                     style="z-index: 5; max-width: inherit; max-height: inherit; white-space: nowrap;color: #fff;font-size:55px;font-family: lato">
+		                    信用评估系统
+		                </div>
+		                <div class="tp-caption grey_heavy_72 sft tp-resizeme" data-x="center"
+		                     data-y="250" data-speed="700" data-start="1000" data-easing="Power0.easeInOut"
+		                     data-splitin="lines"
+		                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
+		                     style="z-index: 5; max-width: inherit; max-height: inherit;
+		                     white-space: nowrap;color: #fff;font-size:45px;font-family: lato">
+		                    欢迎使用
+		                </div>
+		                <div class="hidden-xs tp-caption  sfr tp-resizeme" data-x="center"
+		                     data-y="350" data-speed="1000" data-start="2000" data-easing="Power3.easeInOut"
+		                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
+		                     style="z-index: 5;color:#FFF; background:#D2B48C;">
+		                    <a href="#lookcredit" class="slider_btn">查看评估</a>
+		                </div>
+		            </li>
+		
+		            <li data-index="rs-82" data-transition="fade" data-slotamount="7" data-masterspeed="500" data-delay="5000"
+		                data-saveperformance="on"
+		                data-title="Intro Slide" data-bgfit="cover">
+		                <img src="images/new_slider1.jpg" alt="girlimg" data-bgposition="right bottom"
+		                     data-duration="11000" data-ease="Linear.easeNone" data-bgfit="cover"
+		                     data-bgpositionend="left top">
+		
+		                <div class="tp-caption grey_heavy_72 sfl tp-resizeme" data-x="center"
+		                     data-y="150" data-speed="700" data-start="700" data-easing="Power0.easeInOut"
+		                     data-splitin="words"
+		                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
+		                     style="z-index: 5; max-width: inherit; max-height: inherit; white-space: nowrap;color: #fff;font-size:70px;font-family: lato">
+		                    信用评估系统
+		                </div>
+		                <div class="tp-caption grey_heavy_72 sfr tp-resizeme" data-x="center"
+		                     data-y="250" data-speed="700" data-start="1500" data-easing="Power0.easeInOut"
+		                     data-splitin="words"
+		                     data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1"
+		                     style="z-index: 5; max-width: inherit; max-height: inherit; white-space: nowrap;color: #fff;font-size:45px;font-family: lato">
+		                    欢迎使用
+		                </div>
+		                <div class="hidden-xs tp-caption  sfb tp-resizeme" data-x="center"
+		                     data-y="350" data-speed="1500" data-start="2000" data-easing="Power3.easeInOut"
+		                     data-splitout="none" data-elementdelay="0.4" data-endelementdelay="0.4"
+		                     style="z-index: 5;color:#FFF; background:#D2B48C;">
+		                    <a href="#lookcredit" class="slider_btn">查看评估</a>
+		                </div>
+		            </li>
+		        </ul>
+		    </div>
+    	</div>
+    </div>  
+
+    <!-------------------search------------>
+    <section class="subscribe_section parallax m-t-70">
+	    <div class="container m-t-50" id="lookcredit">
+	        <div class="row section-top-25">
+	            <div class="col-sm-7 col-md-6 col-xs-12 section-top-10">
+	                <h3 class="text-white text-right m-t-70">在此输入用户ID</h3>
+	            </div>
+	            <div class="col-sm-5 col-md-6 m-t-50 section-bottom-pad-40  input_transparent">
+	                <br/>
+	                    <div class="input-group sub_input">
+	                        <input type="search" name="search" id="search_id" class="form-control search"
+	                               placeholder="用户ID" aria-describedby="search" required/>
+	                        <span class="input-group-addon"  onclick='score()'><button type="submit" class="subscribe_btn">
+							<i class="glyphicon glyphicon-send" aria-hidden="true"> </i></button></span>
+	                    </div> 
+	                <br/>
+	            </div>
+	        </div>
+	    </div>
+	    <br/>
+    </section>
+   
+    <!-------------------show radar chart----------->
+    <div class="container">
+        <div class="row section-top-10">
+            <div id="chart1" style="width: 1300px;height:900px;"></div>
+        </div>
+    </div>
+    
+    <!------------------footer------------------->
+    <section class="copy-rights">
+	    <div class="container ">
+	        <div class="row">
+	            <div class="col-xs-12 col-sm-6 section-top-15">
+	                <p class="footer_text_color"><a href="index.html">Home</a> &nbsp;
+	                    <a href="###">服务</a> &nbsp; <a href="###">关于</a> &nbsp;</p>
+	            </div>
+	            <div class="col-xs-12 col-sm-6 text-right section-top-15">
+	
+	                <p class="footer_text_color  ">&copy;西南交通大学信息科学与技术学院 -- 四川省云计算与智能技术重点实验室 </p>
+	            </div>
+	        </div>
+	        <a href="#" id="return-to-top"><img src="images/backto.png" alt="image-missing"></a>
+	    </div>
+	</section>    
+	
+</body>
+</html>

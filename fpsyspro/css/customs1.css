@@ -1,0 +1,82 @@
+/****************page css***************/
+
+/*----------------Header--------------*/
+.navbar-default .navbar-brand {
+  padding-left: 0; }
+
+.tp-header, header {
+  font-size: 30px; }
+
+header {
+  box-shadow: 0 0 1px #dedcde; }
+
+.nav-tabs {
+  padding-left: 21%; }
+
+.register {
+  padding-left: 10px;
+  cursor: pointer; }
+
+.tp-header .signin {
+  padding-right: 10px;
+  border-right: 1px solid #bbb;
+  cursor: pointer; }
+
+.signin span, .register span {
+  font-size: 20px;
+  font-weight: 600; }
+
+@media (max-width: 767px) {
+  .navbar-nav .open .dropdown-menu {
+    background-color: #f5f5f5; }
+.tp-header .signin {
+    border: none; } }
+
+@media (min-width: 768px) {
+  .dropdown-submenu > a:hover:after, .dropdown-submenu > a:focus:after {
+    border-left-color: #ffffff; } }
+
+.modal-body {
+  padding: 20px 25px; }
+
+.tp-header {
+  padding: 10px 0 10px 0;
+  background-color: #3e4955;
+  color: #ddd;
+  outline: none; }
+
+.tp-header i, .tp-header a {
+  padding: 0 8px;
+  color: #ddd; }
+
+.tp-header i:hover, .tp-header a:hover {
+  color: #fff; }
+
+.tp-header .fa-facebook:hover {
+  padding: 0 7px 0 6px; }
+
+.tp-header i:hover {
+  zoom: 115%;
+  padding: 0 6px; }
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .tp-header i, .tp-header a {
+    padding: 0 5px;
+    color: #ddd; }
+  .tp-header i:hover {
+    zoom: 101%;
+    padding: 0 4px; } }
+
+.tp-header a {
+  padding: 0 4px; }
+
+.tp-header a:focus {
+  outline: none; }
+
+@media (max-width: 767px) {
+  .tp-header .text-right i {
+    float: right; }
+  .signin {
+    border: none; } }
+
+
